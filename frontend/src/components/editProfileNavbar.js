@@ -1,6 +1,6 @@
-import React from 'react'
-import { Nav } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import React from 'react';
+import { Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const EditProfileNavbar = (key) => {
   return (
@@ -21,6 +21,6 @@ const EditProfileNavbar = (key) => {
         </LinkContainer>
       </Nav.Item>
     </Nav>
-  )
-}
-export default EditProfileNavbar
+  );
+};
+export default EditProfileNavbar;

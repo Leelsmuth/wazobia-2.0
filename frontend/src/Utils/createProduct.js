@@ -12,18 +12,18 @@ export const productObject = (
   discount,
   sizes,
 ) => {
-  let colors = []
+  let colors = [];
 
   for (let i = 0; i < sizes.length; i++) {
     for (let j = 0; j < sizes[i].colors.length; j++) {
       if (!colors.includes(sizes[i].colors[j].color.en)) {
-        colors.push(sizes[i].colors[j].color.en)
+        colors.push(sizes[i].colors[j].color.en);
       }
     }
   }
 
-  discount.hkd = Number(discount.hkd)
-  discount.jpn = Number(discount.jpn)
+  discount.hkd = Number(discount.hkd);
+  discount.jpn = Number(discount.jpn);
   return {
     productName: nameObj,
     category: categoryObj,
@@ -38,5 +38,5 @@ export const productObject = (
     discount: discount,
     size: sizes,
     colors: colors,
-  }
-}
+  };
+};

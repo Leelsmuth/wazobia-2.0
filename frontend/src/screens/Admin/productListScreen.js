@@ -1,60 +1,60 @@
-import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Route } from 'react-router-dom'
-import { Table, Button, Row, Col, ButtonGroup } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../../components/message'
-import Loader from '../../components/loader'
-import { deleteProduct, fetchAllProducts } from '../../actions/product'
-import { PaginateProductsAdmin } from '../../components/paginate'
-import SearchBox from '../../components/searchBox'
+import React, { useEffect } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Route } from 'react-router-dom';
+import { Table, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/message';
+import Loader from '../../components/loader';
+import { deleteProduct, fetchAllProducts } from '../../actions/product';
+import { PaginateProductsAdmin } from '../../components/paginate';
+import SearchBox from '../../components/searchBox';
 
 const ProductListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1
-  const keyword = match.params.keyword
+  const pageNumber = match.params.pageNumber || 1;
+  const keyword = match.params.keyword;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // User Auth
-  const userAuth = useSelector((state) => state.userAuth)
-  const { userInfo } = userAuth
+  const userAuth = useSelector((state) => state.userAuth);
+  const { userInfo } = userAuth;
 
   // User Settings
-  const settings = useSelector((state) => state.settings)
-  const { language, currency } = settings
+  const settings = useSelector((state) => state.settings);
+  const { language, currency } = settings;
 
   // Product List
-  const productList = useSelector((state) => state.productList)
-  const { loading, products, error, page, pages } = productList
+  const productList = useSelector((state) => state.productList);
+  const { loading, products, error, page, pages } = productList;
 
   // Product Delete
-  const productDelete = useSelector((state) => state.productDelete)
+  const productDelete = useSelector((state) => state.productDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = productDelete
+  } = productDelete;
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/login');
     } else {
       if (userInfo.role !== 'admin') {
-        history.push('/')
+        history.push('/');
       }
-      dispatch(fetchAllProducts(keyword, pageNumber))
+      dispatch(fetchAllProducts(keyword, pageNumber));
     }
-  }, [dispatch, history, userInfo, successDelete, pageNumber, keyword])
+  }, [dispatch, history, userInfo, successDelete, pageNumber, keyword]);
 
   const deleteHandler = (e, id) => {
-    e.preventDefault()
+    e.preventDefault();
     if (window.confirm('Are you sure')) {
-      dispatch(deleteProduct(id))
+      dispatch(deleteProduct(id));
     }
-  }
+  };
   const createProductHandler = () => {
-    history.push('/admin/create-product')
-  }
+    history.push('/admin/create-product');
+  };
   return (
     <>
       <Row className="align-items-center">
@@ -134,7 +134,7 @@ const ProductListScreen = ({ history, match }) => {
                       </ButtonGroup>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </Table>
@@ -144,7 +144,7 @@ const ProductListScreen = ({ history, match }) => {
         <></>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProductListScreen
+export default ProductListScreen;

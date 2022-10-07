@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   ButtonGroup,
   Col,
@@ -6,8 +6,8 @@ import {
   Button,
   OverlayTrigger,
   Tooltip,
-} from 'react-bootstrap'
-import { SearchAllColors } from '../../Utils/getAllColors'
+} from 'react-bootstrap';
+import { SearchAllColors } from '../../Utils/getAllColors';
 
 const ColorButtons = ({
   product,
@@ -17,10 +17,10 @@ const ColorButtons = ({
   selectedIndex,
 }) => {
   const onTrigger = (s, i) => {
-    buttonClick({ color: s, index: i })
-  }
+    buttonClick({ color: s, index: i });
+  };
 
-  const { colorHexArr, colorObjArr } = SearchAllColors(product)
+  const { colorHexArr, colorObjArr } = SearchAllColors(product);
 
   return (
     <ButtonGroup>
@@ -48,11 +48,11 @@ const ColorButtons = ({
                 ></Button>
               </OverlayTrigger>
             </Col>
-          )
+          );
         })}
       </Row>
     </ButtonGroup>
-  )
-}
+  );
+};
 
-export default ColorButtons
+export default ColorButtons;

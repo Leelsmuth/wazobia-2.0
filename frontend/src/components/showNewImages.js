@@ -1,5 +1,5 @@
-import React from 'react'
-import { Row, Col, Button, Image } from 'react-bootstrap'
+import React from 'react';
+import { Row, Col, Button, Image } from 'react-bootstrap';
 
 const ShowNewImage = ({ source, handleRemoveImage }) => {
   return (
@@ -41,10 +41,10 @@ const ShowNewImage = ({ source, handleRemoveImage }) => {
                 </Button>
               </Col>
             </Col>
-          )
+          );
         })}
     </Row>
-  )
-}
+  );
+};
 
-export default ShowNewImage
+export default ShowNewImage;

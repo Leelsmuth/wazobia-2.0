@@ -1,4 +1,4 @@
-import { InputGroup, FormControl } from 'react-bootstrap'
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 export const InputGroupComponent = ({
   onChangeHandler,
@@ -16,5 +16,5 @@ export const InputGroupComponent = ({
         onChange={onChangeHandler}
       />
     </InputGroup>
-  )
-}
+  );
+};

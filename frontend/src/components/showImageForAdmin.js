@@ -1,6 +1,6 @@
-import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
-import { Image } from 'cloudinary-react'
+import React from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+import { Image } from 'cloudinary-react';
 
 const ShowImageForAdmin = ({ source, handleRemoveImage, create }) => {
   return (
@@ -53,10 +53,10 @@ const ShowImageForAdmin = ({ source, handleRemoveImage, create }) => {
                 </Button>
               </Col>
             </Col>
-          )
+          );
         })}
     </Row>
-  )
-}
+  );
+};
 
-export default ShowImageForAdmin
+export default ShowImageForAdmin;

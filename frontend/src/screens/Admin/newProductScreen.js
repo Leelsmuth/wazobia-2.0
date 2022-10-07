@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import {
   Form,
   Button,
@@ -6,85 +6,85 @@ import {
   InputGroup,
   Row,
   Col,
-} from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import FormContainer from '../../components/formContainer'
-import Message from '../../components/message'
-import Loader from '../../components/loader'
-import FormComponent from '../../components/formComponent'
-import { Link } from 'react-router-dom'
-import { productObject } from '../../Utils/createProduct'
-import { createProduct } from '../../actions/product'
-import { CREATE_PRODUCT_RESET } from '../../actions/types'
-import { InputGroupComponent } from '../../Utils/Input Form/inputForm'
+} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import FormContainer from '../../components/formContainer';
+import Message from '../../components/message';
+import Loader from '../../components/loader';
+import FormComponent from '../../components/formComponent';
+import { Link } from 'react-router-dom';
+import { productObject } from '../../Utils/createProduct';
+import { createProduct } from '../../actions/product';
+import { CREATE_PRODUCT_RESET } from '../../actions/types';
+import { InputGroupComponent } from '../../Utils/Input Form/inputForm';
 import {
   formItems,
   priceItems,
   colorItems,
-} from '../../Utils/Input Form/formConstants'
-import ShowImageForAdmin from '../../components/showImageForAdmin'
+} from '../../Utils/Input Form/formConstants';
+import ShowImageForAdmin from '../../components/showImageForAdmin';
 
 const NewProductScreen = ({ match, history }) => {
-  const langInit = { en: '', cn: '', jpn: '' }
-  const currencyInit = { hkd: '', jpn: '' }
-  const colorInit = { colorHex: '', color: langInit, count: 0 }
+  const langInit = { en: '', cn: '', jpn: '' };
+  const currencyInit = { hkd: '', jpn: '' };
+  const colorInit = { colorHex: '', color: langInit, count: 0 };
 
-  const [nameObj, setNameObj] = useState(langInit)
-  const [categoryObj, setCategoryObj] = useState(langInit)
-  const [gender, setGender] = useState('')
-  const [featureObj, setFeatureObj] = useState(langInit)
-  const [descriptionObj, setDescriptionObj] = useState(langInit)
-  const [styleObj, setStyleObj] = useState(langInit)
-  const [priceObj, setPriceObj] = useState(currencyInit)
-  const [material, setMaterial] = useState('')
-  const [washing_care, setWashing_care] = useState('')
-  const [discount, setDiscount] = useState(currencyInit)
+  const [nameObj, setNameObj] = useState(langInit);
+  const [categoryObj, setCategoryObj] = useState(langInit);
+  const [gender, setGender] = useState('');
+  const [featureObj, setFeatureObj] = useState(langInit);
+  const [descriptionObj, setDescriptionObj] = useState(langInit);
+  const [styleObj, setStyleObj] = useState(langInit);
+  const [priceObj, setPriceObj] = useState(currencyInit);
+  const [material, setMaterial] = useState('');
+  const [washing_care, setWashing_care] = useState('');
+  const [discount, setDiscount] = useState(currencyInit);
   //
-  const [colors, setColors] = useState([])
-  const [colorsHex, setColorsHex] = useState([])
-  const [stock, setStock] = useState([])
+  const [colors, setColors] = useState([]);
+  const [colorsHex, setColorsHex] = useState([]);
+  const [stock, setStock] = useState([]);
   //
-  const [newColor, setNewColor] = useState(langInit)
-  const [newColorHex, setNewColorHex] = useState('#ffffff')
-  const [newStock, setNewStock] = useState('')
-  const [newSizeType, setNewSizeType] = useState('')
+  const [newColor, setNewColor] = useState(langInit);
+  const [newColorHex, setNewColorHex] = useState('#ffffff');
+  const [newStock, setNewStock] = useState('');
+  const [newSizeType, setNewSizeType] = useState('');
 
-  const [sizes, setSizes] = useState([])
+  const [sizes, setSizes] = useState([]);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const userAuth = useSelector((state) => state.userAuth)
-  const { userInfo } = userAuth
+  const userAuth = useSelector((state) => state.userAuth);
+  const { userInfo } = userAuth;
 
-  const productCreate = useSelector((state) => state.productCreate)
-  const { loading, error, product: productMessage } = productCreate
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading, error, product: productMessage } = productCreate;
 
   // file input state
-  const [previewSource, setPreviewSource] = useState([])
+  const [previewSource, setPreviewSource] = useState([]);
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/login');
     }
 
     if (userInfo.role !== 'admin') {
-      history.push('/')
+      history.push('/');
     }
     if (productMessage) {
       setTimeout(() => {
-        dispatch({ type: CREATE_PRODUCT_RESET })
-      }, 1500)
+        dispatch({ type: CREATE_PRODUCT_RESET });
+      }, 1500);
     }
-  }, [dispatch, history, match, userInfo, productMessage])
+  }, [dispatch, history, match, userInfo, productMessage]);
 
   const uploadImage = (base64EncodedImage) => {
-    return base64EncodedImage
-  }
+    return base64EncodedImage;
+  };
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const base64Image = uploadImage(previewSource)
+    const base64Image = uploadImage(previewSource);
     const productObj = productObject(
       nameObj,
       categoryObj,
@@ -98,112 +98,112 @@ const NewProductScreen = ({ match, history }) => {
       washing_care,
       discount,
       sizes,
-    )
+    );
     //TODO: uncomment the line below
-    console.log(productObj.image)
-    console.log(productObj)
-    dispatch(createProduct(productObj))
-  }
+    console.log(productObj.image);
+    console.log(productObj);
+    dispatch(createProduct(productObj));
+  };
 
   const handleNewSizeAndColor = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log(colors, stock, colorsHex, images)
-    var colorArray = []
+    var colorArray = [];
     // size obj
     for (var i = 0; i < colors.length; i++) {
       colorArray.push({
         colorHex: colorsHex[i],
         color: colors[i],
         count: stock[i],
-      })
+      });
     }
-    var sizeObject = { sizeType: newSizeType, colors: colorArray }
+    var sizeObject = { sizeType: newSizeType, colors: colorArray };
 
-    setNewSizeType('')
-    setColors([])
-    setColorsHex([])
-    setStock([])
-    setSizes(sizes.concat(sizeObject))
-  }
+    setNewSizeType('');
+    setColors([]);
+    setColorsHex([]);
+    setStock([]);
+    setSizes(sizes.concat(sizeObject));
+  };
 
   const addSizeRow = (e, i) => {
-    e.preventDefault()
-    let newArr = [...sizes]
-    newArr[i].colors.push(colorInit)
-    setSizes(newArr)
-  }
+    e.preventDefault();
+    let newArr = [...sizes];
+    newArr[i].colors.push(colorInit);
+    setSizes(newArr);
+  };
   const handleColorOnChange = (e, i, ind, lan) => {
-    const value = e.target.value
-    const sizeIndex = i
-    const colorIndex = ind
-    console.log('handle color on change')
+    const value = e.target.value;
+    const sizeIndex = i;
+    const colorIndex = ind;
+    console.log('handle color on change');
 
-    let newArr = [...sizes]
-    newArr[sizeIndex].colors[colorIndex].color[lan] = value
+    let newArr = [...sizes];
+    newArr[sizeIndex].colors[colorIndex].color[lan] = value;
 
-    setSizes(newArr)
-  }
+    setSizes(newArr);
+  };
   const handleColorHexOnChange = (e, i, ind) => {
-    const value = e.target.value
-    const sizeIndex = i
-    const colorIndex = ind
-    let newArr = [...sizes]
-    newArr[sizeIndex].colors[colorIndex].colorHex = value
-    setSizes(newArr)
-  }
+    const value = e.target.value;
+    const sizeIndex = i;
+    const colorIndex = ind;
+    let newArr = [...sizes];
+    newArr[sizeIndex].colors[colorIndex].colorHex = value;
+    setSizes(newArr);
+  };
 
   const handleCountOnChange = (e, i, ind) => {
-    const value = e.target.value
-    const sizeIndex = i
-    const colorIndex = ind
-    let newArr = [...sizes]
-    newArr[sizeIndex].colors[colorIndex].count = Number(value)
-    setSizes(newArr)
-  }
+    const value = e.target.value;
+    const sizeIndex = i;
+    const colorIndex = ind;
+    let newArr = [...sizes];
+    newArr[sizeIndex].colors[colorIndex].count = Number(value);
+    setSizes(newArr);
+  };
 
   const handleRemoveColorAndSize = (e, i, ind) => {
-    e.preventDefault()
-    const sizeIndex = i
-    const colorIndex = ind
-    let newArr = [...sizes]
+    e.preventDefault();
+    const sizeIndex = i;
+    const colorIndex = ind;
+    let newArr = [...sizes];
     var filteredArr = newArr[sizeIndex].colors.filter((_, index) => {
-      return index !== colorIndex
-    })
-    newArr[sizeIndex].colors = filteredArr
-    setSizes(newArr)
-  }
+      return index !== colorIndex;
+    });
+    newArr[sizeIndex].colors = filteredArr;
+    setSizes(newArr);
+  };
 
   const handleFileInputChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (!file) {
-      return
+      return;
     }
-    console.log(file)
-    previewFile(file)
-  }
+    console.log(file);
+    previewFile(file);
+  };
   const previewFile = (file) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
-      let newPreviewSource = [...previewSource]
-      newPreviewSource.push(reader.result)
-      setPreviewSource(newPreviewSource)
-    }
-  }
+      let newPreviewSource = [...previewSource];
+      newPreviewSource.push(reader.result);
+      setPreviewSource(newPreviewSource);
+    };
+  };
 
   const handleRemoveImage = (index) => {
-    console.log(index)
-    let newArr = [...previewSource]
+    console.log(index);
+    let newArr = [...previewSource];
 
-    let finalArr = []
+    let finalArr = [];
     for (let i = 0; i < newArr.length; i++) {
       if (index !== i) {
-        finalArr.push(newArr[i])
+        finalArr.push(newArr[i]);
       }
     }
 
-    setPreviewSource(finalArr)
-  }
+    setPreviewSource(finalArr);
+  };
 
   return (
     <>
@@ -232,7 +232,7 @@ const NewProductScreen = ({ match, history }) => {
                   }
                   stateObject={nameObj}
                 />
-              )
+              );
             })}
 
             <h5 className="mt-4">Category</h5>
@@ -252,7 +252,7 @@ const NewProductScreen = ({ match, history }) => {
                   }
                   stateObject={categoryObj}
                 />
-              )
+              );
             })}
 
             <h5 className="mt-4">Gender</h5>
@@ -295,7 +295,7 @@ const NewProductScreen = ({ match, history }) => {
                     }
                     stateObject={featureObj}
                   />
-                )
+                );
               })}
 
               <h5 className="mt-4">Description</h5>
@@ -314,7 +314,7 @@ const NewProductScreen = ({ match, history }) => {
                     }
                     stateObject={descriptionObj}
                   />
-                )
+                );
               })}
 
               <h5 className="mt-4">Style</h5>
@@ -333,7 +333,7 @@ const NewProductScreen = ({ match, history }) => {
                     }
                     stateObject={styleObj}
                   />
-                )
+                );
               })}
 
               <h5 className="mt-4">Price</h5>
@@ -351,7 +351,7 @@ const NewProductScreen = ({ match, history }) => {
                       }
                     />
                   </InputGroup>
-                )
+                );
               })}
 
               {sizes.length ? <h4 className="my-4">Sizes</h4> : null}
@@ -399,7 +399,7 @@ const NewProductScreen = ({ match, history }) => {
                                     handleColorOnChange(e, i, ind, item.key)
                                   }
                                 />
-                              )
+                              );
                             })}
 
                             <FormControl
@@ -431,10 +431,10 @@ const NewProductScreen = ({ match, history }) => {
                             </Button>
                           </InputGroup>
                         </>
-                      )
+                      );
                     })}
                   </div>
-                )
+                );
               })}
             </>
             <div>
@@ -473,18 +473,18 @@ const NewProductScreen = ({ match, history }) => {
                           className="btn-sm"
                           variant="danger"
                           onClick={() => {
-                            setColors(colors.filter((_, index) => i !== index))
+                            setColors(colors.filter((_, index) => i !== index));
                             setColorsHex(
                               colorsHex.filter((_, index) => i !== index),
-                            )
-                            setStock(stock.filter((_, index) => i !== index))
+                            );
+                            setStock(stock.filter((_, index) => i !== index));
                           }}
                         >
                           Remove
                         </Button>
                       </InputGroup.Text>
                     </InputGroup>
-                  )
+                  );
                 })}
 
               <InputGroup size="sm" className="mb-3 my-2">
@@ -502,7 +502,7 @@ const NewProductScreen = ({ match, history }) => {
                         setNewColor({ ...newColor, [item.key]: e.target.value })
                       }
                     />
-                  )
+                  );
                 })}
 
                 <FormControl
@@ -526,12 +526,12 @@ const NewProductScreen = ({ match, history }) => {
                   <Button
                     className="btn-sm"
                     onClick={() => {
-                      setColors(colors.concat(newColor))
-                      setColorsHex(colorsHex.concat(newColorHex))
-                      setStock(stock.concat(newStock))
-                      setNewColor(langInit)
-                      setNewColorHex('')
-                      setNewStock('')
+                      setColors(colors.concat(newColor));
+                      setColorsHex(colorsHex.concat(newColorHex));
+                      setStock(stock.concat(newStock));
+                      setNewColor(langInit);
+                      setNewColorHex('');
+                      setNewStock('');
                     }}
                   >
                     <i className="fas fa-plus" />
@@ -578,7 +578,7 @@ const NewProductScreen = ({ match, history }) => {
                       }
                     />
                   </InputGroup>
-                )
+                );
               })}
 
               <div className="py-4">
@@ -591,7 +591,7 @@ const NewProductScreen = ({ match, history }) => {
         )}
       </FormContainer>
     </>
-  )
-}
+  );
+};
 
-export default NewProductScreen
+export default NewProductScreen;

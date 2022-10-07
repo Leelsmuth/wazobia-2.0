@@ -15,16 +15,15 @@ export const formItems = (itemName) => {
       placeholder: `${itemName} in Japanese`,
       key: 'jpn',
     },
-  ]
-}
+  ];
+};
 
 export const priceItems = (discount) => {
   return [
     {
       title: 'Hong Kong Dollars $',
-      placeholder: `${
-        discount ? 'Discounted price' : 'Price'
-      } in Hong Kong Dollars`,
+      placeholder: `${discount ? 'Discounted price' : 'Price'
+        } in Hong Kong Dollars`,
       key: 'hkd',
     },
     {
@@ -32,8 +31,8 @@ export const priceItems = (discount) => {
       placeholder: `${discount ? 'Discounted price' : 'Price'} in Japanese Yen`,
       key: 'jpn',
     },
-  ]
-}
+  ];
+};
 
 export const colorItems = () => {
   return [
@@ -49,5 +48,5 @@ export const colorItems = () => {
       placeholder: 'japanese',
       key: 'jpn',
     },
-  ]
-}
+  ];
+};

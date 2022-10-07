@@ -23,10 +23,10 @@ router.delete("/api/order/:id", auth, OrderController.deleteOrder);
 // Get all the orders from the database
 router.get("/api/orders", auth, adminAuth, OrderController.getAllOrders);
 router.patch(
-    "/api/order/:id/deliver",
-    auth,
-    adminAuth,
-    OrderController.updateOrderToDelivered
+  "/api/order/:id/deliver",
+  auth,
+  adminAuth,
+  OrderController.updateOrderToDelivered
 );
 
 module.exports = router;

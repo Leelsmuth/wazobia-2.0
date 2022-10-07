@@ -4,5 +4,5 @@ export const configUtil = (token) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }
-}
+  };
+};

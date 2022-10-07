@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUserOrders } from '../actions/order'
-import Loader from '../components/loader'
-import Message from '../components/message'
-import { Table, Button } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserOrders } from '../actions/order';
+import Loader from '../components/loader';
+import Message from '../components/message';
+import { Table, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const OrderHistoryScreen = ({ history }) => {
   // States: Get states from Redux Store
-  const userAuth = useSelector((state) => state.userAuth)
-  const { userInfo } = userAuth
+  const userAuth = useSelector((state) => state.userAuth);
+  const { userInfo } = userAuth;
 
-  const { loading, orders, error } = useSelector((state) => state.userOrders)
-  const dispatch = useDispatch()
+  const { loading, orders, error } = useSelector((state) => state.userOrders);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/login');
     } else {
-      dispatch(getUserOrders())
+      dispatch(getUserOrders());
     }
-  }, [dispatch, userInfo, history])
+  }, [dispatch, userInfo, history]);
 
   return (
     <div>
@@ -70,7 +70,7 @@ const OrderHistoryScreen = ({ history }) => {
                         </span>
                       </LinkContainer>
                     </tr>
-                  )
+                  );
                 })}
               </tbody>
             </Table>
@@ -82,7 +82,7 @@ const OrderHistoryScreen = ({ history }) => {
         <Message variant="danger">{error}</Message>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default OrderHistoryScreen
+export default OrderHistoryScreen;

@@ -2,21 +2,21 @@
 export const currencyDecoder = (currency) => {
   switch (currency) {
     case 'hkd':
-      return 'HKD'
+      return 'HKD';
     case 'jpn':
-      return 'JPY'
+      return 'JPY';
     default:
-      return 'HKD'
+      return 'HKD';
   }
-}
+};
 
 export const stripeCurrencyDecoder = (currency) => {
   switch (currency) {
     case 'hkd':
-      return 'hkd'
+      return 'hkd';
     case 'jpn':
-      return 'jpy'
+      return 'jpy';
     default:
-      return 'hkd'
+      return 'hkd';
   }
-}
+};

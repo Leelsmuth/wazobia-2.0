@@ -1,5 +1,5 @@
-import React from 'react'
-import { Col, Row, Image } from 'react-bootstrap'
+import React from 'react';
+import { Col, Row, Image } from 'react-bootstrap';
 
 const PaymentMethods = () => {
   const paymentIcons = [
@@ -11,7 +11,7 @@ const PaymentMethods = () => {
     '/images/alipay.svg',
     '/images/wechat.svg',
     '/images/fps.svg',
-  ]
+  ];
 
   return (
     <Row className="mt-2">
@@ -20,10 +20,10 @@ const PaymentMethods = () => {
           <Col md={'auto'} xs={2} key={i}>
             <Image width={30} height={20} src={p} />
           </Col>
-        )
+        );
       })}
     </Row>
-  )
-}
+  );
+};
 
-export default PaymentMethods
+export default PaymentMethods;

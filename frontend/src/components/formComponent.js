@@ -1,5 +1,5 @@
-import React from 'react'
-import { Form } from 'react-bootstrap'
+import React from 'react';
+import { Form } from 'react-bootstrap';
 const FormComponent = ({
   label,
   type,
@@ -35,11 +35,11 @@ const FormComponent = ({
         </Form.Control.Feedback>
       )}
     </Form.Group>
-  )
-}
+  );
+};
 
 FormComponent.defaultProps = {
   required: true,
-}
+};
 
-export default FormComponent
+export default FormComponent;

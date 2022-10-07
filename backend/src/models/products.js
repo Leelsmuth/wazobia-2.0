@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const helper = require('./helper/productHelper')
+const mongoose = require('mongoose');
+const helper = require('./helper/productHelper');
 
 const productSchema = new mongoose.Schema({
   productName: {
@@ -94,7 +94,7 @@ const productSchema = new mongoose.Schema({
     default: Date.now(),
     required: true,
   },
-})
+});
 
-const Product = mongoose.model('products', productSchema)
-module.exports = { productSchema, Product }
+const Product = mongoose.model('products', productSchema);
+module.exports = { productSchema, Product };

@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
 const ModalPopup = ({ btnTitle, modalImage }) => {
-  const [show, setShow] = useState(false)
-  const [hover, setHover] = useState(false)
+  const [show, setShow] = useState(false);
+  const [hover, setHover] = useState(false);
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  const handleMouseOut = () => setHover(false)
-  const handleMouseOver = () => setHover(true)
+  const handleMouseOut = () => setHover(false);
+  const handleMouseOver = () => setHover(true);
 
   return (
     <>
@@ -34,7 +34,7 @@ const ModalPopup = ({ btnTitle, modalImage }) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ModalPopup
+export default ModalPopup;

@@ -1,11 +1,11 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
-import { Image } from 'cloudinary-react'
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import { Image } from 'cloudinary-react';
 
 const ImageCarousel = ({ images, colorIndexOnClick, carouselIndex }) => {
   const handleOnClick = (i) => {
-    colorIndexOnClick(i)
-  }
+    colorIndexOnClick(i);
+  };
 
   return (
     <Row className="my-2" variant="secondary">
@@ -27,17 +27,17 @@ const ImageCarousel = ({ images, colorIndexOnClick, carouselIndex }) => {
               style={
                 carouselIndex === i
                   ? {
-                      border: `2px solid black`,
-                      objectFit: 'cover',
-                    }
+                    border: `2px solid black`,
+                    objectFit: 'cover',
+                  }
                   : { objectFit: 'cover' }
               }
             />
           </Col>
-        )
+        );
       })}
     </Row>
-  )
-}
+  );
+};
 
-export default ImageCarousel
+export default ImageCarousel;
